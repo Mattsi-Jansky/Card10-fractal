@@ -40,6 +40,10 @@ with display.open() as d:
                 d.rect(xBuffer + x * pixelSize, yBuffer + y * pixelSize, xBuffer + x * pixelSize + pixelSize, yBuffer + y * pixelSize + pixelSize, col=(255-i,255-i,255-i), filled=True)
             d.update()
         print("======================ONE LOOP COMPLETED=========================")
+        if(buttons.read(buttons.BOTTOM_RIGHT)):
+            moveX += 0.1
+        if(buttons.read(buttons.BOTTOM_LEFT)):
+            moveX += 0.1
         if zoom < 0:
             zoom += 0.2
         elif zoom < 1:
