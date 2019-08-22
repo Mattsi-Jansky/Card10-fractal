@@ -5,6 +5,7 @@ Generates and slowly zooms in on a Julia Fractal set
 """
 import display
 import utime
+import buttons
 
 #======>>CREDIT: Most fractal generation code stolen from https://www.geeksforgeeks.org/julia-fractal-python/
 #Device resolution: 160x80
@@ -24,9 +25,9 @@ with display.open() as d:
     d.update()
     d.close()
 
-while True:
-    print("----------------NEW LOOP START-----------------")
-    with display.open() as d:
+with display.open() as d:
+    while True:
+        print("----------------NEW LOOP START-----------------")
         for x in range(w): 
             for y in range(h): 
                 zx = 1.5*(x - w/2)/(0.5*zoom*w) + moveX 
@@ -38,13 +39,12 @@ while True:
                     i -= 1
                 d.rect(xBuffer + x * pixelSize, yBuffer + y * pixelSize, xBuffer + x * pixelSize + pixelSize, yBuffer + y * pixelSize + pixelSize, col=(255-i,255-i,255-i), filled=True)
             d.update()
-        d.close()
-    print("======================ONE LOOP COMPLETED=========================")
-    if zoom < 0:
-        zoom += 0.2
-    elif zoom < 1:
-        zoom += 0.1
-    elif zoom < 3:
-        zoom += 0.01
-    else:
-        zoom += 0.005
+        print("======================ONE LOOP COMPLETED=========================")
+        if zoom < 0:
+            zoom += 0.2
+        elif zoom < 1:
+            zoom += 0.1
+        elif zoom < 3:
+            zoom += 0.01
+        else:
+            zoom += 0.005
